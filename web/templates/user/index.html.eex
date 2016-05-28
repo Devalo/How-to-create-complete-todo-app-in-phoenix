@@ -2,7 +2,7 @@
 <table class="table">
   <%= for user <- @users do %>
     <tr>
-      <td><%= user.email %> </td>
+      <td><%= user.email %> (<%= link "View", to: user_path(@conn, :show, user) %>) </td>
     </tr>
   <% end %>
 </table>

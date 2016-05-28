@@ -1,0 +1,16 @@
+<h1><%= @user.email %></h1>
+<%= form_for @changeset, user_path(@conn, :update, @user), fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong</p>
+      <% end %>
+  <div class="form-group">
+    <%= text_input f, :email, placeholder: "Email", class: "form-control" %>
+    <%= error_tag f, :email %>
+  </div>
+  <div class="form-group">
+    <%= password_input f, :password, placeholder: "Password", class: "form-control" %>
+    <%= error_tag f, :password %>
+  </div>
+  <%= submit "Update user", class: "btn btn-primary" %>
+<% end %>
