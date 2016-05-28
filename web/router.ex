@@ -17,10 +17,7 @@ defmodule Todo.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-  end
+    resources "/users", UserController
 
-  # Other scopes may use custom stacks.
-  # scope "/api", Todo do
-  #   pipe_through :api
-  # end
+  end
 end
