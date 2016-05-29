@@ -52,6 +52,7 @@ defmodule Todo.Web do
       import Todo.Router.Helpers
       import Todo.ErrorHelpers
       import Todo.Gettext
+      import Todo.ViewHelper
     end
   end
 
