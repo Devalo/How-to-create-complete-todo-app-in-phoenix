@@ -19,7 +19,7 @@ defmodule Todo.UserController do
         conn
         |> Todo.Auth.login(user)
         |> put_flash(:info, "User created!")
-        |> redirect(to: user_path(conn, :index))
+        |> redirect(to: todo_path(conn, :index))
       {:error, changeset} ->
         conn
         |> render("new.html", changeset: changeset)

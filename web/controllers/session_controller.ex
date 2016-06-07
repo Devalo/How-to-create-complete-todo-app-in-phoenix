@@ -11,7 +11,7 @@ defmodule Todo.SessionController do
         logged_in_user = Guardian.Plug.current_resource(conn)
         conn
         |> put_flash(:info, "Innlogget")
-        |> redirect(to: user_path(conn, :show, logged_in_user))
+        |> redirect(to: todo_path(conn, :index))
       {:error, _reason, conn} ->
         conn
         |> put_flash(:error, "Feil brukernavn/passord")
