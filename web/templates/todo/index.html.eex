@@ -5,9 +5,6 @@
     <tr>
       <th>Title</th>
       <th>Completed</th>
-      <th>User</th>
-
-      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -15,8 +12,6 @@
     <tr>
       <td><%= todo.title %></td>
       <td><%= todo.completed %></td>
-      <td><%= todo.user_id %></td>
-
       <td class="text-right">
         <%= link "Show", to: todo_path(@conn, :show, todo), class: "btn btn-default btn-xs" %>
         <%= link "Edit", to: todo_path(@conn, :edit, todo), class: "btn btn-default btn-xs" %>
