@@ -13,7 +13,7 @@
       <td><%= todo.title %></td>
       <td><%= todo.completed %></td>
       <td class="text-right">
-        <%= link "Show", to: todo_path(@conn, :show, todo), class: "btn btn-default btn-xs" %>
+        <%= link "Complete", to: todo_path(@conn, :complete_todo, todo), class: "btn btn-default btn-xs" %>
         <%= link "Edit", to: todo_path(@conn, :edit, todo), class: "btn btn-default btn-xs" %>
         <%= link "Delete", to: todo_path(@conn, :delete, todo), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>

@@ -73,6 +73,22 @@ defmodule Todo.TodoController do
     |> redirect(to: todo_path(conn, :index))
   end
 
+  def complete_todo(conn, %{"id" => id}) do
+    changeset = Repo.get!(Todo, id)
+    changeset = Ecto.Changeset.change changeset, completed: true
+
+    case Repo.update(changeset) do
+      {:ok, todo} ->
+        conn
+        |> put_flash(:info, "Todo marked as completed")
+        |> redirect(to: todo_path(conn, :index))
+      {:error, changeset} ->
+        conn
+        |> put_flash(:info, "Oops, something went wrong")
+        |> redirect(to: todo_path(conn, :index))
+    end
+  end
+
 
   defp my_todos(user) do
     assoc(user, :todos)

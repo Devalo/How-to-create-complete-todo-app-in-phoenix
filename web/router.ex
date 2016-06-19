@@ -35,6 +35,8 @@ defmodule Todo.Router do
     pipe_through [:browser, :browser_auth]
     resources "/users", UserController, only: [:show, :index, :update, :delete]
     resources "/todos", TodoController
-  end
 
+    get "/todos/:id/complete_todo", TodoController, :complete_todo
+    put "/todos/:id/complete_todo", TodoController, :complete_todo
+  end
 end
