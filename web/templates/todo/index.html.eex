@@ -1,25 +1,29 @@
-<h2>Listing todos</h2>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="h4">To be completed</strong>
+    <%= link "New Todo", to: todo_path(@conn, :new), class: "btn btn-default btn-xs pull-right" %>
+  </div>
+  <div class="panel-body">
+    <%= for todo <- @incomplete_todos do %>
+      <strong class="h3"><%= todo.title %></strong>
+      <%= link "Complete", to: todo_path(@conn, :complete_todo, todo), class: "btn btn-default btn-sm pull-right" %>
+      <hr>
+    <% end %>
+  </div>
+</div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Completed</th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for todo <- @todos do %>
-    <tr>
-      <td><%= todo.title %></td>
-      <td><%= todo.completed %></td>
-      <td class="text-right">
-        <%= link "Complete", to: todo_path(@conn, :complete_todo, todo), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: todo_path(@conn, :edit, todo), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: todo_path(@conn, :delete, todo), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <strong class="h4">Completed Todos</strong>
+  </div>
+  <div class="panel-body">
+    <%= for todo <- @completed_todos do %>
+      <strong class="h3"><%= todo.title %></strong>
+      <%= link "Delete", to: todo_path(@conn, :delete, todo),
+                         method: :delete, data: [confirm: "Are you sure?"],
+                         class: "btn btn-default btn-sm pull-right" %>
+      <hr>
+    <% end %>
+  </div>
+</div>
 
-<%= link "New todo", to: todo_path(@conn, :new) %>

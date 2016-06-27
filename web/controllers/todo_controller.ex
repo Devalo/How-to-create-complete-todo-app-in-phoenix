@@ -7,10 +7,23 @@ defmodule Todo.TodoController do
 
   def index(conn, _params) do
     user = Guardian.Plug.current_resource(conn)
-    todos = Repo.all(my_todos(user))
-    render(conn, "index.html", todos: todos)
+    completed_todos = my_todos(user)
+                      |> completed
+                      |> Repo.all
+    incomplete_todos = my_todos(user)
+                       |> incomplete
+                       |> Repo.all
+
+    render(conn, "index.html", incomplete_todos: incomplete_todos, completed_todos: completed_todos)
   end
-  #        logged_in_user = Guardian.Plug.current_resource(conn)
+
+  defp incomplete(user_todos) do
+    from t in user_todos, where: t.completed == false
+  end
+
+  defp completed(user_todos) do
+    from t in user_todos, where: t.completed == true
+  end
 
   def new(conn, _params) do
     changeset = Guardian.Plug.current_resource(conn)
